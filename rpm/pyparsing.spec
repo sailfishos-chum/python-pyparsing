@@ -8,10 +8,11 @@
 %define clamp_mtime_to_source_date_epoch 1
 %define use_source_date_epoch_as_buildtime 1
 
+# note: macros in name break OBS build
 Name:           python3-pyparsing
 Summary:        Library for creating PEG (parsing expression grammar) parsers
 Version:        2.4.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 URL:            https://github.com/pyparsing/pyparsing
 Source:         %{name}-%{version}.tar.bz2
@@ -46,6 +47,7 @@ This package contains documentation for %{dist_name}.
 
 %prep
 %autosetup -n %{name}-%{version}/pyparsing
+sed -i -e 's/\r//g' examples/*.py examples/*.dfm examples/Setup.ini
 
 %build
 %py3_build
