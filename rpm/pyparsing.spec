@@ -8,7 +8,7 @@
 %define clamp_mtime_to_source_date_epoch 1
 %define use_source_date_epoch_as_buildtime 1
 
-Name:           python%{python_pkgversion}-%{dist_name}
+Name:           python3-pyparsing
 Summary:        Library for creating PEG (parsing expression grammar) parsers
 Version:        2.4.7
 Release:        1%{?dist}
