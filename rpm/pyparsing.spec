@@ -12,7 +12,7 @@
 Name:           python3-pyparsing
 Summary:        Library for creating PEG (parsing expression grammar) parsers
 Version:        2.4.7
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        MIT
 URL:            https://github.com/pyparsing/pyparsing
 Source:         %{name}-%{version}.tar.bz2
@@ -47,7 +47,7 @@ This package contains documentation for %{dist_name}.
 
 %prep
 %autosetup -n %{name}-%{version}/pyparsing
-sed -i -e 's/\r//g' examples/*.py examples/*.dfm examples/Setup.ini
+sed -i -e 's/\r//g' examples/*.*
 
 %build
 %py3_build
@@ -83,5 +83,5 @@ rm %{buildroot}/%{python3_sitelib}/%{dist_name}-*.egg-info/SOURCES.txt
 %endif
 
 %changelog
-* Fri Feb 04 2022 takimata <takimata@gmx.de> - 2.4.7-1
+* Fri Feb 04 2022 takimata <takimata@gmx.de> - 2.4.7-3
 - Initial packaging for Chum
