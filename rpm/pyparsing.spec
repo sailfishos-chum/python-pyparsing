@@ -52,13 +52,17 @@ sed -i -e 's/\r//g' examples/*.*
 %build
 %py3_build
 
-%if %{with docs}
-# Theme not available
-sed -i '/alabaster/d' docs/conf.py
-sphinx-build -b html docs docs/html
-# cleanup
-rm -rf docs/html/.{doctrees,buildinfo}
-%endif
+## disable docs completely on SFOS/OBS.
+# 1. alabaster is not available
+# 2. sphinx has this bug: https://github.com/sphinx-doc/sphinx/issues/2295
+
+#%%if %%{with docs}
+## Theme not available
+#sed -i '/alabaster/d' docs/conf.py
+#sphinx-build -b html docs docs/html
+## cleanup
+#rm -rf docs/html/.{doctrees,buildinfo}
+#%%endif
 
 %install
 %py3_install
@@ -76,11 +80,11 @@ rm %{buildroot}/%{python3_sitelib}/%{dist_name}-*.egg-info/SOURCES.txt
 %{python3_sitelib}/__pycache__/*
 %{python3_sitelib}/pyparsing-*-info/
 
-%if %{with docs}
-%files -n python-%{dist_name}-doc
-%license LICENSE
-%doc CHANGES README.rst docs/html examples
-%endif
+#%%if %%{with docs}
+#%%files -n python-%%{dist_name}-doc
+#%%license LICENSE
+#%%doc CHANGES README.rst docs/html examples
+#%%endif
 
 %changelog
 * Fri Feb 04 2022 takimata <takimata@gmx.de> - 2.4.7-3
